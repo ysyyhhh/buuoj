@@ -34,8 +34,8 @@ def JudgeHDU(problemid, language, usercode):
 
     loginUrl = "http://acm.hdu.edu.cn/userloginex.php?action=login"
     loginData = {
-        "username": "lpojjudger1",
-        "userpass": "504603913"
+        "username": "buuacm",
+        "userpass": "acmbuu.edu.cn"
     }
     responseRes = mafengwoSession.post(
         loginUrl, data=loginData, headers=header, allow_redirects=True)
@@ -48,17 +48,17 @@ def JudgeHDU(problemid, language, usercode):
         "_usercode": usercode,
         'check':0
     }
-    responseRes = mafengwoSession.post(postUrl, data=postData, headers=header)
+    responseRes = mafengwoSession.post(postUrl, data=postData, headers=header
     resstr = f"text = {responseRes.text}"
     print(responseRes.status_code)
 
     while True:
         sleep(1)
-        statusUrl = "http://acm.hdu.edu.cn/status.php?first=&pid=%s&user=lpojjudger1&status=0" % (problemid)
+        statusUrl = "http://acm.hdu.edu.cn/status.php?first=&pid=%s&user=buuacm&status=0" % (problemid)
         responseRes = mafengwoSession.get(statusUrl)
         resstr = f"text = {responseRes.text}"
 
-        subid = substr("<td height=22px", "lpojjudger1", resstr)
+        subid = substr("<td height=22px", "buuacm", resstr)
         subid = substr(">", "</td><td>", subid)
 
         restr = substr(subid, "font>", resstr)
